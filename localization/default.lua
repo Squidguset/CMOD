@@ -51,7 +51,7 @@ return {
             j_sgcry_truejim = {
                 name = "True Jimbo",
                 text = {
-                    "{C:white,X:dark_edition}^^^4{} Mult"
+                    "{C:white,X:dark_edition}^^4{} Mult"
                 }
             },
             j_sgcry_Crash = {

@@ -123,7 +123,7 @@ SMODS.Joker {
     calculate = function (self, card, context)
         if context.joker_main then
             return{
-                eee_mult = 4
+                ee_mult = 4
             }
         end
     end
