@@ -1,0 +1,16 @@
+{
+	"id": "sgcry",
+	"name": "CMOD",
+	"display_name": "CMOD",
+	"author": ["Squidguset"],
+	"description": "",
+	"prefix": "sgcry",
+	"main_file": "main.lua",
+	"priority": 1331,
+	"badge_colour": "c49eff",
+	"badge_text_colour": "000000",
+	"version": "1.0.0",
+	"dependencies": [
+        "Cryptid (>=0.5.6)"
+    ]
+}

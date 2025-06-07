@@ -1,0 +1,50 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 10000
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Cryptid "items/code.lua"]'
+pattern = '''and context.consumeable.ability.set == "Code"'''
+position = "at"
+payload = '''and (context.consumeable.ability.set == "Code" or next(SMODS.find_card("j_sgcry_codething")))'''
+match_indent = true
+count = 3
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Cryptid "items/code.lua"]'
+pattern = '''G.consumeables.cards[i].ability.set == "Code"'''
+position = "at"
+payload = '''(G.consumeables.cards[i].ability.set == "Code" or next(SMODS.find_card("j_sgcry_codething")))'''
+match_indent = true
+count = 3
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Cryptid "items/exotic.lua"]'
+pattern = '''Cryptid.with_deck_effects(G.jokers.cards[1], function(card)
+					Cryptid.misprintize(card, { min = 2, max = 2 }, nil, true)
+				end)'''
+position = "at"
+payload = '''Cryptid.with_deck_effects(G.jokers.cards[1], function(card)
+					Cryptid.misprintize(card, { min = 2, max = 2 }, nil, true,"^",1)
+				end)'''
+match_indent = true
+count = 1
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Cryptid "lib/misc.lua"]'
+pattern = '''{ name = "colour_1", ref_table = G.C, ref_value = "CRY_EXOTIC" },
+					{ name = "colour_2", ref_table = G.C, ref_value = "DARK_EDITION" },'''
+position = "at"
+payload = '''{ name = "colour_1", ref_table = G.C, ref_value = "SGCRY_EXTREME" },
+					{ name = "colour_2", ref_table = G.C, ref_value = "DARK_EDITION" },'''
+match_indent = true
+count = 1
+
+
+
+

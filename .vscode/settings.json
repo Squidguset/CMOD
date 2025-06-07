@@ -1,0 +1,17 @@
+{
+    
+    "Lua.diagnostics.disable": [
+        "lowercase-global",
+        "need-check-nil",
+        "undefined-field",
+        "undefined-global",
+        "unused-local"
+    ],
+    "Lua.workspace.library": [
+        "../smods",
+        "../lovely/dump",
+        "lsp_def",
+        "../Cryptid",
+        "../Cryptid-main",
+    ]
+}
