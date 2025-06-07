@@ -1,5 +1,7 @@
 Cryptid.mod_whitelist["CMOD"] = true
 
+assert(SMODS.load_file("items/editions.lua"))()
+
 SMODS.Atlas {
     key = "jokers",
     path = "Jokers.png",

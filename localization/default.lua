@@ -2,7 +2,15 @@ return {
     descriptions = {
         Back={},
         Blind={},
-        Edition={},
+        Edition={
+            e_sgcry_graded = {
+                name = "Graded",
+                text = {
+                    "{C:white,X:money}X#1#{} sell value",
+                    "at end of round"
+                }
+            }
+        },
         Enhanced={},
         Joker={
             j_sgcry_codething = {
@@ -58,7 +66,8 @@ return {
         },
         high_scores={},
         labels={
-            sgcry_extreme = "Extreme"
+            sgcry_extreme = "Extreme",
+            sgcry_graded = "Graded"
         },
         poker_hand_descriptions={},
         poker_hands={},
