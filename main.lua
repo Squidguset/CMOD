@@ -270,6 +270,7 @@ SMODS.Joker {
     pos = {x=0,y=2},
     blueprint_compat = true,
     rarity = "sgcry_extreme",
+    immutable = true,
     calculate = function (self, card, context)
         if context.joker_main then
             return{
