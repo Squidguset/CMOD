@@ -3,6 +3,16 @@ version = "1.0.0"
 dump_lua = true
 priority = 10000
 
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Cryptid "items/code.lua"]'
+pattern = '''local f = pseudorandom_element(crashes, pseudoseed("cry_crash"))'''
+position = "after"
+payload = '''if next(SMODS.find_card("j_sgcry_Crash")) then f =  crashes[#crashes] end'''
+match_indent = true
+
+
 [[patches]]
 [patches.pattern]
 target = '=[SMODS Cryptid "items/code.lua"]'
