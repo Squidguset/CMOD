@@ -269,3 +269,43 @@ SMODS.Joker {
         }
     end,
 }
+
+SMODS.Joker {
+    key = "tarot",
+    atlas = "jokers",
+    pos = {x=0,y=4},
+    rarity = "sgcry_extreme",
+    config = {immutable = {gained = 0, inc = 2, req = 1}},
+    calculate = function (self, card, context)
+        if
+			context.using_consumeable
+			and context.consumeable.ability.set == "Tarot"
+			and not context.consumeable.beginning_end
+			and not context.blueprint
+		then
+            card.ability.immutable.gained = card.ability.immutable.gained + card.ability.immutable.inc
+            G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.immutable.inc
+            card_eval_status_text(
+					context.blueprint_card or card,
+					"extra",
+					nil,
+					nil,
+					nil,
+					{ message = localize("k_upgrade_ex"), colour = G.C.PURPLE }
+				)
+        end
+        if context.joker_main then
+            return{
+                e_mult = 1 + (G.consumeables.config.card_limit - #G.consumeables.cards)
+            }
+        end
+    end,
+    add_to_deck = function (self, card, from_debuff)
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.immutable.inc
+    end,
+    remove_from_deck = function (self, card, from_debuff)
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.immutable.inc
+    end
+
+
+}
