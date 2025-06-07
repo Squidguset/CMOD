@@ -129,3 +129,42 @@ SMODS.Joker {
     end
     
 }
+
+sgcry_arbituim_msg = {
+    "a11 cr45h 61^3 4CE",
+    "all cr4s# Gi>E Ac3",
+    "a|l (rash G!v3 4(3",
+    "a[[ C*@5h Giv3 4Ce",
+
+}
+
+SMODS.Joker {
+    key = "Crash",
+    atlas = "jokers",
+    cost = 100,
+    pos = {x=0,y=3},
+    rarity = "sgcry_extreme",
+       loc_vars = function(self, info_queue, card)
+        --Taken directly, modified, and uses dependencies from Cryptid's ERROR
+        return {
+            main_start = {
+                {
+                    n = G.UIT.O,
+                    config = {
+                        object = DynaText({
+                            --string = asc_misprint_operators,
+                            string = sgcry_arbituim_msg,
+                            colours = { G.C.SET.Code},
+                            pop_in_rate = 9999999,
+                            silent = true,
+                            random_element = true,
+                            pop_delay = 0.30,
+                            scale = 0.32,
+                            min_cycle_time = 0,
+                        }),
+                    },
+                },
+            },
+        }
+    end,
+}

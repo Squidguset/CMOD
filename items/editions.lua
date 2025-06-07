@@ -5,15 +5,23 @@ send_vars = function (self, sprite, card)
         }
 end}
 
+-- sound by lexi
+SMODS.Sound {
+    key = "gradedsound",
+    path = "graded.ogg"
+}
+
 SMODS.Edition {
     key = "graded",
     shader = "graded",
     config = {extra = {inc = 2},immutable = {inc = 0}},
+    sound = {sound = "sgcry_gradedsound"},
     loc_vars = function (self, info_queue, card)
         return {
             vars = {card.edition.extra.inc}
         }
     end,
+    weight = 3,
     on_remove = function (card)
         card.sell_cost = card.sell_cost - card.edition.immutable.inc
     end,

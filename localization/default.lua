@@ -53,6 +53,12 @@ return {
                     text = {
                         "{C:white,X:dark_edition}^^^4{} Mult"
                     }
+                },
+                j_sgcry_Crash = {
+                    name = "Arbituim",
+                    text = {
+                        
+                    }
                 }
         },
         Other={},
