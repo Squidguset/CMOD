@@ -13,6 +13,14 @@ return {
         },
         Enhanced={},
         Joker={
+            j_cry_gemino = {
+                name = "Gemini",
+                text = {
+                    "{C:attention}Square{} all values",
+                    "of leftmost {C:attention}Joker{}",
+                    "at end of round"
+                }
+            },
             j_sgcry_codething = {
                 name = "Matrixed Joker",
                 text = {

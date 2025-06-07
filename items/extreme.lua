@@ -101,7 +101,7 @@ SMODS.Joker {
 					nil,
 					nil,
 					nil,
-					{ message = localize("k_upgrade_ex"), colour = G.C.GREEN }
+					{ message = localize("k_upgrade_ex"), colour = G.C.GREEN, sound = "sgcry_expgeneric" }
 				)
 			end
 			return nil, true
