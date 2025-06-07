@@ -132,7 +132,7 @@ SMODS.Joker {
 
 sgcry_arbituim_msg = {
     "a11 cr45h 61^3 4CE",
-    "all cr4s# Gi>E ¢ce",
+    "all cr4s# Gi>E 4ce",
     "a|l (rash G!v3 4(3",
     "a[[ C*@5h Giv3 4ce",
     "@lL cR@$H g!v3 4c3",
@@ -243,6 +243,7 @@ SMODS.Joker {
     key = "Crash",
     atlas = "jokers",
     cost = 100,
+    no_doe = true,
     pos = {x=0,y=3},
     rarity = "sgcry_extreme",
        loc_vars = function(self, info_queue, card)
@@ -270,12 +271,18 @@ SMODS.Joker {
     end,
 }
 
+
+
 SMODS.Joker {
     key = "tarot",
     atlas = "jokers",
     pos = {x=0,y=4},
+    no_doe = true,
     rarity = "sgcry_extreme",
     config = {immutable = {gained = 0, inc = 2, req = 1}},
+    loc_vars = function (self, info_queue, card)
+        return {vars = {card.ability.immutable.gained, card.ability.immutable.inc, card.ability.immutable.req } }
+    end,
     calculate = function (self, card, context)
         if
 			context.using_consumeable

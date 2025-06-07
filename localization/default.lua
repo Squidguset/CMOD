@@ -40,26 +40,35 @@ return {
                     "{C:inactive}(#1#/20)"
                 }
             },
-                j_sgcry_extremekar = {
-                    name = "Karonine",
-                    text = {
-                        "At end of round",
-                        "{C:white,X:dark_edition}^#1#{} to all of",
-                        "rightmost {C:attention}Jokers{} values"
-                    }
-                }, 
-                j_sgcry_truejim = {
-                    name = "True Jimbo",
-                    text = {
-                        "{C:white,X:dark_edition}^^^4{} Mult"
-                    }
-                },
-                j_sgcry_Crash = {
-                    name = "Arbituim",
-                    text = {
-                        
-                    }
+            j_sgcry_extremekar = {
+                name = "Karonine",
+                text = {
+                    "At end of round",
+                    "{C:white,X:dark_edition}^#1#{} to all of",
+                    "rightmost {C:attention}Jokers{} values"
                 }
+            }, 
+            j_sgcry_truejim = {
+                name = "True Jimbo",
+                text = {
+                    "{C:white,X:dark_edition}^^^4{} Mult"
+                }
+            },
+            j_sgcry_Crash = {
+                name = "Arbituim",
+                text = {
+                    
+                }
+            },
+            j_sgcry_tarot = {
+                name = "Tratoline",
+                text = {
+                    "Every {C:tarot}Tarot{} card used",
+                    "gives {C:dark_edition}+#2#{C:attention} Consumable slots",
+                    "Empty {C:attention}Consumable slots{} give {X:dark_edition,C:white}^1{} Mult",
+                    "{C:inactive}(Currently {C:dark_edition}+#1#{C:attention} Consumable slots{C:inactive})",
+                }
+            },
         },
         Other={},
         Planet={},
