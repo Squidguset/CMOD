@@ -86,6 +86,15 @@ return {
                     "{C:tarot}Arcana Pack{} is opened",
                     "{C:inactive}(Currently {C:blue}+#2#{C:inactive} Chips)"
                 }
+            },
+            j_sgcry_evilfuckedupjoker = {
+                name = "Evil fucked up Joker",
+                text = {
+                    "When Blind is selected, destroy",
+                    "{C:attention}Rightmost Joker{}",
+                    "and gain {C:white,X:mult}X#1#{} Mult",
+                    "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
+                }
             }
         },
         Other={
