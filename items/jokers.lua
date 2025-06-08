@@ -76,6 +76,7 @@ SMODS.Joker {
     pos = {x=4,y=0},
     cost = 3,
     rarity = 1,
+    blueprint_compatible = true,
     loc_vars = function (self, info_queue, card)
         return {
             vars = {
@@ -111,6 +112,7 @@ SMODS.Joker {
     pos = {x=5,y=0},
     cost = 3,
     rarity = 1,
+    blueprint_compatible = true,
     loc_vars = function (self, info_queue, card)
         return {
             vars = {
