@@ -9,7 +9,6 @@ SMODS.Voucher {
     atlas = "vouchers",
     pos = {x=0,y=0},
     loc_vars = function (self, info_queue, card)
-        info_queue[#info_queue+1] = {key = "sgcry_placeholder",set = "Other"}
         return {
             vars = {
                 card.ability.extra.gives
@@ -20,6 +19,10 @@ SMODS.Voucher {
     redeem = function (self, voucher)
         G.GAME.sgcryfreereroll = G.GAME.sgcryfreereroll + voucher.ability.extra.gives
         G.GAME.sgcryrerollleft = G.GAME.sgcryrerollleft + voucher.ability.extra.gives
+    end,
+    unredeem = function (self, voucher)
+        G.GAME.sgcryfreereroll = G.GAME.sgcryfreereroll - voucher.ability.extra.gives
+        G.GAME.sgcryrerollleft = G.GAME.sgcryrerollleft - voucher.ability.extra.gives
     end
 }
 
@@ -28,7 +31,6 @@ SMODS.Voucher {
     atlas = "vouchers",
     pos = {x=0,y=1},
     loc_vars = function (self, info_queue, card)
-        info_queue[#info_queue+1] = {key = "sgcry_placeholder",set = "Other"}
         return {
             vars = {
                 card.ability.extra.gives,
@@ -41,6 +43,11 @@ SMODS.Voucher {
         G.GAME.sgcryfreereroll = G.GAME.sgcryfreereroll + voucher.ability.extra.gives
         G.GAME.sgcryrerollleft = G.GAME.sgcryrerollleft + voucher.ability.extra.gives
         SMODS.change_booster_limit(voucher.ability.extra.booster)
+    end,
+    unredeem = function (self, voucher)
+        G.GAME.sgcryfreereroll = G.GAME.sgcryfreereroll - voucher.ability.extra.gives
+        G.GAME.sgcryrerollleft = G.GAME.sgcryrerollleft - voucher.ability.extra.gives
+        SMODS.change_booster_limit(-voucher.ability.extra.booster)
     end
 }
 
@@ -48,8 +55,8 @@ SMODS.Voucher {
     key = "rerollprof",
     atlas = "vouchers",
     pos = {x=0,y=2},
+    pools = { ["Tier3"] = true },
     loc_vars = function (self, info_queue, card)
-        info_queue[#info_queue+1] = {key = "sgcry_placeholder",set = "Other"}
         return {
             vars = {
                 card.ability.extra.gives,
@@ -62,5 +69,10 @@ SMODS.Voucher {
         G.GAME.sgcryfreereroll = G.GAME.sgcryfreereroll + voucher.ability.extra.gives
         G.GAME.sgcryrerollleft = G.GAME.sgcryrerollleft + voucher.ability.extra.gives
         change_shop_size(voucher.ability.extra.shop)
+    end,
+    unredeem = function (self, voucher)
+        G.GAME.sgcryfreereroll = G.GAME.sgcryfreereroll - voucher.ability.extra.gives
+        G.GAME.sgcryrerollleft = G.GAME.sgcryrerollleft - voucher.ability.extra.gives
+        change_shop_size(-voucher.ability.extra.shop)
     end
 }
