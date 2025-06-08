@@ -38,6 +38,7 @@ SMODS.Voucher {
             }
         }
     end,
+    requires = {"v_sgcry_basicreroll"},
     config = {extra = {gives = 5,booster = 1}},
     redeem = function (self, voucher)
         G.GAME.sgcryfreereroll = G.GAME.sgcryfreereroll + voucher.ability.extra.gives
@@ -55,6 +56,7 @@ SMODS.Voucher {
     key = "rerollprof",
     atlas = "vouchers",
     pos = {x=0,y=2},
+    requires = {"v_sgcry_rerolladvance"},
     pools = { ["Tier3"] = true },
     loc_vars = function (self, info_queue, card)
         return {

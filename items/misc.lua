@@ -101,3 +101,22 @@ SMODS.DrawStep {
     end,
     conditions = {vortex = false, facing = "front"}
 }
+
+-- show no extreme copies
+SMODS.Joker:take_ownership("j_cry_altgoogol",{
+    loc_vars = function (self, info_queue, card)
+        local main_end
+        if G.jokers and G.jokers.cards then
+                for k, v in ipairs(G.jokers.cards) do
+                    if (v.config.center and v.config.center.rarity == "sgcry_extreme") and (G.localization.descriptions.Other.sgcry_noext)then 
+                        main_end = {}
+                        localize{type = 'other', key = 'sgcry_noext', nodes = main_end, vars = {}}
+                        main_end = main_end[1]
+                        break
+                    end
+                end
+            end
+            return { key = Cryptid.gameset_loc(self, { modest = "balanced" }), vars = { card.ability.copies },main_end = main_end }
+    end
+})
+

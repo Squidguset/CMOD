@@ -101,6 +101,12 @@ return {
             sgcry_placeholder = {
                 name = "art",
                 text = {"this art is a placeholder"}
+            },
+            sgcry_noext = {
+                name = "awaw",
+                text = {
+                    "{C:inactive}(Cannot copy {C:sgcry_extreme}Extreme{C:inactive} rarity Jokers)"
+                }
             }
         },
         Planet={},
