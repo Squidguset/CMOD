@@ -12,5 +12,8 @@
 	"version": "1.0.0",
 	"dependencies": [
         "Cryptid (>=0.5.6)"
-    ]
+    ],
+	"conflicts": [
+		"jen"
+	]
 }
