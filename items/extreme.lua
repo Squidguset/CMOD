@@ -278,6 +278,7 @@ SMODS.Joker {
     atlas = "jokers",
     pos = {x=0,y=4},
     no_doe = true,
+    cost = 100,
     rarity = "sgcry_extreme",
     config = {immutable = {gained = 0, inc = 2, req = 1}},
     loc_vars = function (self, info_queue, card)
@@ -298,7 +299,7 @@ SMODS.Joker {
 					nil,
 					nil,
 					nil,
-					{ message = localize("k_upgrade_ex"), colour = G.C.PURPLE }
+					{ message = localize("k_upgrade_ex"), colour = G.C.PURPLE, sound = "sgcry_consumeableinc" }
 				)
         end
         if context.joker_main then
@@ -308,10 +309,10 @@ SMODS.Joker {
         end
     end,
     add_to_deck = function (self, card, from_debuff)
-        G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.immutable.inc
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.immutable.gained
     end,
     remove_from_deck = function (self, card, from_debuff)
-        G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.immutable.inc
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.immutable.gained
     end
 
 

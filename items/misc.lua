@@ -4,6 +4,10 @@ SMODS.Sound {
     path = "generic_reverb.ogg"
 }
 
+SMODS.Sound {
+    key = "consumeableinc",
+    path = "consumeableup.ogg"
+}
 
 local extreme_gradientslow = SMODS.Gradient({
     key="extremeslow",
