@@ -70,13 +70,42 @@ return {
                 }
             },
         },
-        Other={},
+        Other={
+            sgcry_placeholder = {
+                name = "art",
+                text = {"this art is a placeholder"}
+            }
+        },
         Planet={},
         Spectral={},
         Stake={},
         Tag={},
         Tarot={},
-        Voucher={},
+        Voucher={
+            v_sgcry_basicreroll = {
+                name = "Reroll Inhibitor",
+                text = {
+                    "{C:green}+#1#{} rerolls before",
+                    "losing {C:attention}shop slots{}"
+                }
+            },
+            v_sgcry_rerolladvance = {
+                name = "Reroll Fanatic",
+                text = {
+                    "{C:green}+#1#{} rerolls before",
+                    "losing {C:attention}shop slots{}",
+                    "{C:blue}+#2#{} pack slot"
+                }
+            },
+            v_sgcry_rerollprof = {
+                name = "Reroll Prophet",
+                text = {
+                    "{C:green}+#1#{} rerolls before",
+                    "losing {C:attention}shop slots{}",
+                    "{C:attention}+#2#{} shop slot"
+                }
+            }
+        },
     },
     misc = {
         achievement_descriptions={},

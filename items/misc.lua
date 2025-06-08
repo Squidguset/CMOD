@@ -1,4 +1,18 @@
 
+SGCRY = {}
+
+SGCRY.GGLOBALS = {}
+SMODS.current_mod.reset_game_globals = function (run_start)
+    for i,v in ipairs(SGCRY.GGLOBALS) do
+        SGCRY.GGLOBALS[i](run_start)
+    end
+end
+
+function sgcagg(func)
+    table.insert(SGCRY.GGLOBALS,func)
+end
+
+
 SMODS.Sound {
     key = "expgeneric",
     path = "generic_reverb.ogg"
