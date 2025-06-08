@@ -69,6 +69,24 @@ return {
                     "{C:inactive}(Currently {C:dark_edition}+#1#{C:attention} Consumable slots{C:inactive})",
                 }
             },
+            j_sgcry_wgc = {
+                name = "White and Gold Card",
+                text = {
+                    "This Joker gains",
+                    "{C:red}+#1#{} Mult when any",
+                    "{C:planet}Celestial Pack{} is opened",
+                    "{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)"
+                }
+            },
+            j_sgcry_bbc = {
+                name = "Black and Blue Card",
+                text = {
+                    "This Joker gains",
+                    "{C:blue}+#1#{} Chips when any",
+                    "{C:tarot}Arcana Pack{} is opened",
+                    "{C:inactive}(Currently {C:blue}+#2#{C:inactive} Chips)"
+                }
+            }
         },
         Other={
             sgcry_placeholder = {

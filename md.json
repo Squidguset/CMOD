@@ -2,7 +2,7 @@
 	"id": "sgcry",
 	"name": "CMOD",
 	"display_name": "CMOD",
-	"author": ["Squidguset, Lexi"],
+	"author": ["Squidguset","Lexi"],
 	"description": "",
 	"prefix": "sgcry",
 	"main_file": "main.lua",

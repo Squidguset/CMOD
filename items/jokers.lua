@@ -69,3 +69,73 @@ SMODS.Joker {
     end
 end
 }
+
+SMODS.Joker {
+    key = "wgc",
+    atlas = "jokers",
+    pos = {x=4,y=0},
+    cost = 3,
+    rarity = 1,
+    loc_vars = function (self, info_queue, card)
+        return {
+            vars = {
+                card.ability.extra.inc,
+                card.ability.extra.mult
+            }
+        }
+    end,
+    config = {extra = {inc = 4,mult = 0}},
+    calculate = function (self, card, context)
+       if context.joker_main then
+            return{
+                mult = card.ability.extra.mult
+            }
+        end
+        if context.open_booster and context.card.config.center.kind == "Celestial" and not context.blueprint then
+            card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.inc
+            card_eval_status_text(
+					context.blueprint_card or card,
+					"extra",
+					nil,
+					nil,
+					nil,
+					{ message = localize("k_upgrade_ex"), colour = G.C.RED}
+				)
+        end
+    end
+}
+
+SMODS.Joker {
+    key = "bbc",
+    atlas = "jokers",
+    pos = {x=5,y=0},
+    cost = 3,
+    rarity = 1,
+    loc_vars = function (self, info_queue, card)
+        return {
+            vars = {
+                card.ability.extra.inc,
+                card.ability.extra.chips
+            }
+        }
+    end,
+    config = {extra = {inc = 9,chips = 0}},
+    calculate = function (self, card, context)
+       if context.joker_main then
+            return{
+                chips = card.ability.extra.chips
+            }
+        end
+        if context.open_booster and context.card.config.center.kind == "Arcana" and not context.blueprint then
+            card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.inc
+            card_eval_status_text(
+					context.blueprint_card or card,
+					"extra",
+					nil,
+					nil,
+					nil,
+					{ message = localize("k_upgrade_ex"), colour = G.C.BLUE}
+				)
+        end
+    end
+}
