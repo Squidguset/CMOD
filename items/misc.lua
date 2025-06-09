@@ -62,41 +62,67 @@ SMODS.DrawStep {
     key = "extreme",
     order = 200,
     func = function (self)
+        local timer = G.TIMERS.REAL
         if self.children.laytwo then
+            local timeroff = timer + 0.25
 
-			local scale_mod = 0.07 + 0.02*math.sin(1.8*(G.TIMERS.REAL+0.25)) + 0.00*math.sin(((G.TIMERS.REAL+0.25) - math.floor((G.TIMERS.REAL+0.25)))*math.pi*14)*(1 - ((G.TIMERS.REAL+0.25) - math.floor((G.TIMERS.REAL+0.25))))^3
-            local rotate_mod = 0.05*math.sin(1.219*(G.TIMERS.REAL+0.25)) + 0.00*math.sin(((G.TIMERS.REAL+0.25))*math.pi*5)*(1 - ((G.TIMERS.REAL+0.25) - math.floor((G.TIMERS.REAL+0.25))))^2
+			local scale_mod = 0.07 + 0.02*math.sin(1.8*(timeroff)) + 0.00*math.sin(((timeroff) - math.floor((timeroff)))*math.pi*14)*(1 - ((timeroff) - math.floor((timeroff))))^3
+            local rotate_mod = 0.05*math.sin(1.219*(timeroff)) + 0.00*math.sin(((timeroff))*math.pi*5)*(1 - ((timeroff) - math.floor((timeroff))))^2
+
+            local xoff = 0
+            local yoff = 0
 
             if self.config.center.rotlayer == 2 then
-                rotate_mod = rotate_mod + (G.TIMERS.REAL+0.25)
+                rotate_mod = rotate_mod + (timeroff)
             end
 
-			self.children.laytwo:draw_shader('dissolve',0, nil, false, self.children.center,scale_mod, rotate_mod,nil, 0.1 + 0.03*math.sin(1.8*(G.TIMERS.REAL+0.25)),nil, 0.6)
-			self.children.laytwo:draw_shader('dissolve', nil, nil, false, self.children.center, scale_mod, rotate_mod)
+            if self.config.center.facelayer == 2 then
+                xoff = 0.05*math.sin(0.8*timeroff)
+                yoff = 0.05*math.sin((1.6*timeroff)+0.5)
+            end
+
+			self.children.laytwo:draw_shader('dissolve',0, nil, false, self.children.center,scale_mod, rotate_mod,xoff,yoff + 0.1 + 0.03*math.sin(1.8*(timeroff)),nil, 0.6)
+			self.children.laytwo:draw_shader('dissolve', nil, nil, false, self.children.center, scale_mod, rotate_mod, xoff, yoff)
         end
         if self.children.laythr then
+            local timeroff = timer
 
-			local scale_mod = 0.07 + 0.02*math.sin(1.8*G.TIMERS.REAL) + 0.00*math.sin((G.TIMERS.REAL - math.floor(G.TIMERS.REAL))*math.pi*14)*(1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL)))^3
-            local rotate_mod = 0.05*math.sin(1.219*G.TIMERS.REAL) + 0.00*math.sin((G.TIMERS.REAL)*math.pi*5)*(1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL)))^2
+			local scale_mod = 0.07 + 0.02*math.sin(1.8*timeroff) + 0.00*math.sin((timeroff - math.floor(timeroff))*math.pi*14)*(1 - (timeroff - math.floor(timeroff)))^3
+            local rotate_mod = 0.05*math.sin(1.219*timeroff) + 0.00*math.sin((timeroff)*math.pi*5)*(1 - (timeroff - math.floor(timeroff)))^2
+
+            local xoff = 0
+            local yoff = 0
 
             if self.config.center.rotlayer == 3 then
-                rotate_mod = rotate_mod + G.TIMERS.REAL
+                rotate_mod = rotate_mod + timeroff
+            end
+            if self.config.center.facelayer == 3 then
+                xoff = 0.05*math.sin(0.8*timeroff)
+                yoff = 0.05*math.sin((1.6*timeroff)+0.5)
             end
 
-			self.children.laythr:draw_shader('dissolve',0, nil, false, self.children.center,scale_mod, rotate_mod,nil, 0.1 + 0.03*math.sin(1.8*G.TIMERS.REAL),nil, 0.6)
-			self.children.laythr:draw_shader('dissolve', nil, nil, false, self.children.center, scale_mod, rotate_mod)
+			self.children.laythr:draw_shader('dissolve',0, nil, false, self.children.center,scale_mod, rotate_mod,xoff,yoff + 0.1 + 0.03*math.sin(1.8*timeroff),nil, 0.6)
+			self.children.laythr:draw_shader('dissolve', nil, nil, false, self.children.center, scale_mod, rotate_mod, xoff, yoff)
         end
         if self.children.layfou then
+            local timeroff = timer + 0.75
 
-			local scale_mod = 0.07 + 0.02*math.sin(1.8*(G.TIMERS.REAL+0.5)) + 0.00*math.sin(((G.TIMERS.REAL+0.5) - math.floor((G.TIMERS.REAL+0.5)))*math.pi*14)*(1 - ((G.TIMERS.REAL+0.5) - math.floor((G.TIMERS.REAL+0.5))))^8
-            local rotate_mod = 0.05*math.sin(1.219*(G.TIMERS.REAL+0.5)) + 0.00*math.sin(((G.TIMERS.REAL+0.5))*math.pi*5)*(1 - ((G.TIMERS.REAL+0.5) - math.floor((G.TIMERS.REAL+0.5))))^2
+			local scale_mod = 0.07 + 0.02*math.sin(1.8*(timeroff)) + 0.00*math.sin(((timeroff) - math.floor((timeroff)))*math.pi*14)*(1 - ((timeroff) - math.floor((timeroff))))^8
+            local rotate_mod = 0.05*math.sin(1.219*(timeroff)) + 0.00*math.sin(((timeroff))*math.pi*5)*(1 - ((timeroff) - math.floor((timeroff))))^2
+
+            local xoff = 0
+            local yoff = 0
 
             if self.config.center.rotlayer == 4 then
-                rotate_mod = rotate_mod + (G.TIMERS.REAL+0.5)
+                rotate_mod = rotate_mod + (timeroff)
             end
-
-			self.children.layfou:draw_shader('dissolve',0, nil, false, self.children.center,scale_mod, rotate_mod,nil, 0.1 + 0.03*math.sin(1.8*(G.TIMERS.REAL+0.5)),nil, 0.6)
-			self.children.layfou:draw_shader('dissolve', nil, nil, false, self.children.center, scale_mod, rotate_mod)
+            if self.config.center.facelayer == 4 then
+                xoff = 0.05*math.sin(0.8*timeroff)
+                yoff = 0.05*math.sin((1.6*timeroff)+0.5)
+            end
+            
+			self.children.layfou:draw_shader('dissolve',0, nil, false, self.children.center,scale_mod, rotate_mod,xoff,yoff + 0.1 + 0.03*math.sin(1.8*(timeroff)),nil, 0.6)
+			self.children.layfou:draw_shader('dissolve', nil, nil, false, self.children.center, scale_mod, rotate_mod, xoff, yoff)
         end
     end,
     conditions = {vortex = false, facing = "front"}
@@ -118,5 +144,61 @@ SMODS.Joker:take_ownership("j_cry_altgoogol",{
             end
             return { key = Cryptid.gameset_loc(self, { modest = "balanced" }), vars = { card.ability.copies },main_end = main_end }
     end
-})
+}, true)
 
+SMODS.Consumable:take_ownership("c_cry_analog",{
+can_use = function (self, card)
+        
+        if G.jokers and G.jokers.cards then
+                for k, v in ipairs(G.jokers.cards) do
+                    if (v.config.center and v.config.center.rarity ~= "sgcry_extreme") then 
+                            return #G.jokers.cards > (G.GAME.modifiers.cry_beta and 1 or 0)
+                    end
+                end
+            end
+            return false
+end,
+	loc_vars = function(self, info_queue, center)
+        local main_end
+        if G.jokers and G.jokers.cards then
+                for k, v in ipairs(G.jokers.cards) do
+                    if (v.config.center and v.config.center.rarity == "sgcry_extreme") and (G.localization.descriptions.Other.sgcry_noext)then 
+                        main_end = {}
+                        localize{type = 'other', key = 'sgcry_noext', nodes = main_end, vars = {}}
+                        main_end = main_end[1]
+                        break
+                    end
+                end
+            end
+            return { key = Cryptid.gameset_loc(self, { modest = "balanced" }),
+            vars = {
+				math.min(center.ability.copies, center.ability.immutable.max_copies),
+				math.min(center.ability.ante, center.ability.immutable.max_ante),
+			},
+            main_end = main_end }
+	end,
+
+},true)
+
+SMODS.Joker:take_ownership("j_cry_speculo",{
+    loc_vars = function(self, info_queue, center)
+		if not center.edition or (center.edition and not center.edition.negative) then
+			info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
+		end
+        local main_end
+        if G.jokers and G.jokers.cards then
+                for k, v in ipairs(G.jokers.cards) do
+                    if (v.config.center and v.config.center.rarity == "sgcry_extreme") and (G.localization.descriptions.Other.sgcry_noext)then 
+                        main_end = {}
+                        localize{type = 'other', key = 'sgcry_noext', nodes = main_end, vars = {}}
+                        main_end = main_end[1]
+                        break
+                    end
+                end
+            end
+            return {main_end = main_end }
+	end,
+}, true)
+
+
+Cryptid.pointerblistifytype("rarity","sgcry_extreme")

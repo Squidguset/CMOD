@@ -31,7 +31,7 @@ SMODS.Joker {
     cost = 100,
     atlas = "jokers",
     rotlayer = 2,
-    editlayer =3,
+    facelayer = 3,
     no_doe = true,
     config = {extra = {change = 3}},
     blueprint_compat = true,
@@ -117,6 +117,7 @@ SMODS.Joker {
     cost = 100,
     no_doe = true,
     pos = {x=0,y=2},
+    facelayer = 3,
     blueprint_compat = true,
     rarity = "sgcry_extreme",
     immutable = true,
@@ -244,6 +245,7 @@ SMODS.Joker {
     atlas = "jokers",
     cost = 100,
     no_doe = true,
+    facelayer = 3,
     pos = {x=0,y=3},
     rarity = "sgcry_extreme",
        loc_vars = function(self, info_queue, card)
@@ -279,6 +281,7 @@ SMODS.Joker {
     pos = {x=0,y=4},
     no_doe = true,
     cost = 100,
+    facelayer = 2,
     rarity = "sgcry_extreme",
     config = {immutable = {gained = 0, inc = 2, req = 1}},
     loc_vars = function (self, info_queue, card)
@@ -317,3 +320,119 @@ SMODS.Joker {
 
 
 }
+
+SMODS.Joker {
+    key = "spect",
+    atlas = "jokers",
+    pos = {x=0,y=5},
+    rarity = "sgcry_extreme",
+    rotlayer = 2,
+    facelayer = 3,
+    no_doe = true,
+    loc_vars = function (self, info_queue, card)
+        info_queue[#info_queue+1] = G.P_TAGS.tag_cry_empowered
+        return{
+            vars = {
+                G.GAME.probabilities.normal or 1
+            }
+        }
+    end,
+    add_to_deck = function (self, card, from_debuff)
+        G.GAME.spectral_rate = G.GAME.spectral_rate + 10
+    end,
+    remove_from_deck = function (self, card, from_debuff)
+        G.GAME.spectral_rate = G.GAME.spectral_rate - 10
+    end,
+    calculate = function (self, card, context)
+        if
+			context.using_consumeable
+			and context.consumeable.ability.set == "Spectral"
+			and not context.consumeable.beginning_end
+		then
+            if pseudorandom("extremespect") <= G.GAME.probabilities.normal / 3 then
+            add_tag(Tag("tag_cry_empowered"))
+            card_eval_status_text(
+					context.blueprint_card or card,
+					"extra",
+					nil,
+					nil,
+					nil,
+					{ message = localize("k_sgcry_empower"), colour = G.C.CRY_EXOTIC, sound = "talisman_emult" }
+				)
+            else
+                card_eval_status_text(
+					context.blueprint_card or card,
+					"extra",
+					nil,
+					nil,
+					nil,
+					{ message = localize("k_nope_ex"), colour = G.C.RED}
+				)
+            end
+        end
+    end
+}
+
+
+SMODS.Consumable:take_ownership("c_cry_gateway",{
+    loc_vars = function(self, info_queue, card)
+        local key, vars
+        if next(SMODS.find_card("j_sgcry_spect")) then
+            key = self.key .. "_alt"
+           
+        else
+            key = self.key
+            
+            
+        end
+        return { key = key, vars = vars }
+    end,
+    can_use = function(self, card)
+		
+        if next(SMODS.find_card("j_sgcry_spect")) then
+        -- just check for space
+        return #G.jokers.cards < G.jokers.config.card_limit
+        else
+        --Don't allow use if everything is eternal and there is no room
+		return #Cryptid.advanced_find_joker(nil, nil, nil, { "eternal" }, true, "j") < G.jokers.config.card_limit
+        end
+	end,
+	use = function(self, card, area, copier)
+        if not next(SMODS.find_card("j_sgcry_spect")) then
+		local deletable_jokers = {}
+		for k, v in pairs(G.jokers.cards) do
+			if not v.ability.eternal then
+				deletable_jokers[#deletable_jokers + 1] = v
+			end
+		end
+		local _first_dissolve = nil
+		G.E_MANAGER:add_event(Event({
+			trigger = "before",
+			delay = 0.75,
+			func = function()
+				for k, v in pairs(deletable_jokers) do
+					if v.config.center.rarity == "cry_exotic" then
+						check_for_unlock({ type = "what_have_you_done" })
+					end
+					v:start_dissolve(nil, _first_dissolve)
+					_first_dissolve = true
+				end
+				return true
+			end,
+		}))
+    end
+		G.E_MANAGER:add_event(Event({
+			trigger = "after",
+			delay = 0.4,
+			func = function()
+				play_sound("timpani")
+				local card = create_card("Joker", G.jokers, nil, "cry_exotic", nil, nil, nil, "cry_gateway")
+				card:add_to_deck()
+				G.jokers:emplace(card)
+				card:juice_up(0.3, 0.5)
+				return true
+			end,
+		}))
+		delay(0.6)
+	end
+},true)

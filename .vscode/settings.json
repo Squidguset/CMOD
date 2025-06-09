@@ -10,7 +10,7 @@
     "Lua.workspace.library": [
         "../smods",
         "../lovely/dump",
-        "lsp_def",
+        "../smods/lsp_def",
         "../Cryptid",
         "../Cryptid-main",
     ]

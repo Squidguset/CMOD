@@ -179,7 +179,17 @@ SMODS.Joker {
                         play_sound('slice1', 0.96+math.random()*0.08)
                     return true end }))
                     
-                end
+                    else
+                        card.ability.extra.xmult = 1
+                        card_eval_status_text(
+					context.blueprint_card or card,
+					"extra",
+					nil,
+					nil,
+					nil,
+					{ message = localize("k_reset"), colour = G.C.RED}
+				)
+                    end
             end
     end
 end

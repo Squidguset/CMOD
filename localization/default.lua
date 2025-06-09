@@ -93,7 +93,17 @@ return {
                     "When Blind is selected, destroy",
                     "{C:attention}Rightmost Joker{}",
                     "and gain {C:white,X:mult}X#1#{} Mult",
+                    "If no {C:attention}Joker{} is destroyed, {C:attention}Joker Resets",
                     "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
+                }
+            },
+            j_sgcry_spect = {
+                name = "Vaneguard",
+                text  ={
+                    "{C:spectral}Spectral{} cards may show up in shop",
+                    "Using a {C:spectral}Spectral{} card has a {C:green}#1# in 3{} chance",
+                    "to create an {C:dark_edition}Empowered{} tag",
+                    "{C:cry_exotic}Gateway{} no longer destroys {C:attention}Jokers"
                 }
             }
         },
@@ -110,7 +120,23 @@ return {
             }
         },
         Planet={},
-        Spectral={},
+        Spectral={
+            c_cry_pointer = {
+				name = "POINTER://",
+				text = {
+					"Create a card",
+					"of {C:cry_code}your choice",
+					"{C:inactive,s:0.8}(Exotic and Extreme Jokers excluded)",
+				},
+			},
+            c_cry_gateway_alt = {
+				name = "Gateway",
+				text = {
+					"Create a random",
+					"{C:cry_exotic,E:1}Exotic{C:attention} Joker{}"
+				},
+			},
+        },
         Stake={},
         Tag={},
         Tarot={},
@@ -147,7 +173,8 @@ return {
         challenge_names={},
         collabs={},
         dictionary={
-            k_sgcry_extreme = "Extreme"
+            k_sgcry_extreme = "Extreme",
+            k_sgcry_empower = "Empowered!"
         },
         high_scores={},
         labels={
