@@ -105,6 +105,20 @@ return {
                     "to create an {C:dark_edition}Empowered{} tag",
                     "{C:cry_exotic}Gateway{} no longer destroys {C:attention}Jokers"
                 }
+            },
+            j_sgcry_crowker = {
+                name = "Crowker",
+                text = {"Earn {C:money}$#1#{} at",
+                            "end of round"}
+            },
+            j_sgcry_zaffre = {
+                name = "{C:blue}Zaffre{} Card",
+                text = {
+                    "This Joker gains",
+                    "{C:white,X:red}X#1#{} Mult when any",
+                    "{C:spectral}Spectral Pack{} is opened",
+                    "{C:inactive}(Currently {C:white,X:red}X#2#{C:inactive} Mult)"
+                }
             }
         },
         Other={

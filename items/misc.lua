@@ -44,15 +44,12 @@ local ssr = Card.set_sprites
 function Card:set_sprites(_center,_front)
     local ret = ssr(self,_center,_front)
     if self.config.center.rarity == "sgcry_extreme" then
-        self.children.laytwo = Sprite(self.T.x, self.T.y, self.T.w, self.T.h, G.ASSET_ATLAS[self.config.center.atlas] ,{x=self.config.center.pos.x+1,y=self.config.center.pos.y})
-        self.children.laytwo:set_role({major = self, role_type = 'Glued', draw_major = self})
-        self.children.laytwo.states.visible = false
-        self.children.laythr = Sprite(self.T.x, self.T.y, self.T.w, self.T.h, G.ASSET_ATLAS[self.config.center.atlas] ,{x=self.config.center.pos.x+2,y=self.config.center.pos.y})
-        self.children.laythr:set_role({major = self, role_type = 'Glued', draw_major = self})
-        self.children.laythr.states.visible = false
-        self.children.layfou = Sprite(self.T.x, self.T.y, self.T.w, self.T.h, G.ASSET_ATLAS[self.config.center.atlas] ,{x=self.config.center.pos.x+3,y=self.config.center.pos.y})
-        self.children.layfou:set_role({major = self, role_type = 'Glued', draw_major = self})
-        self.children.layfou.states.visible = false
+        
+        for x = 1, self.config.center.extrlayers do
+        self.children["extremelay"..x] = Sprite(self.T.x, self.T.y, self.T.w, self.T.h, G.ASSET_ATLAS[self.config.center.atlas] ,{x=self.config.center.pos.x+x,y=self.config.center.pos.y})
+        self.children["extremelay"..x]:set_role({major = self, role_type = 'Glued', draw_major = self})
+        self.children["extremelay"..x].states.visible = false
+        end
     end
     return ret
 end
@@ -63,29 +60,10 @@ SMODS.DrawStep {
     order = 200,
     func = function (self)
         local timer = G.TIMERS.REAL
-        if self.children.laytwo then
-            local timeroff = timer + 0.25
-
-			local scale_mod = 0.07 + 0.02*math.sin(1.8*(timeroff)) + 0.00*math.sin(((timeroff) - math.floor((timeroff)))*math.pi*14)*(1 - ((timeroff) - math.floor((timeroff))))^3
-            local rotate_mod = 0.05*math.sin(1.219*(timeroff)) + 0.00*math.sin(((timeroff))*math.pi*5)*(1 - ((timeroff) - math.floor((timeroff))))^2
-
-            local xoff = 0
-            local yoff = 0
-
-            if self.config.center.rotlayer == 2 then
-                rotate_mod = rotate_mod + (timeroff)
-            end
-
-            if self.config.center.facelayer == 2 then
-                xoff = 0.05*math.sin(0.8*timeroff)
-                yoff = 0.05*math.sin((1.6*timeroff)+0.5)
-            end
-
-			self.children.laytwo:draw_shader('dissolve',0, nil, false, self.children.center,scale_mod, rotate_mod,xoff,yoff + 0.1 + 0.03*math.sin(1.8*(timeroff)),nil, 0.6)
-			self.children.laytwo:draw_shader('dissolve', nil, nil, false, self.children.center, scale_mod, rotate_mod, xoff, yoff)
-        end
-        if self.children.laythr then
-            local timeroff = timer
+        if self.config.center.rarity == "sgcry_extreme"  then
+        for x = 1, self.config.center.extrlayers  do
+            if self.children["extremelay"..x] then
+            local timeroff = timer + x*.25
 
 			local scale_mod = 0.07 + 0.02*math.sin(1.8*timeroff) + 0.00*math.sin((timeroff - math.floor(timeroff))*math.pi*14)*(1 - (timeroff - math.floor(timeroff)))^3
             local rotate_mod = 0.05*math.sin(1.219*timeroff) + 0.00*math.sin((timeroff)*math.pi*5)*(1 - (timeroff - math.floor(timeroff)))^2
@@ -93,36 +71,18 @@ SMODS.DrawStep {
             local xoff = 0
             local yoff = 0
 
-            if self.config.center.rotlayer == 3 then
+            if self.config.center.rotlayer == x then
                 rotate_mod = rotate_mod + timeroff
             end
-            if self.config.center.facelayer == 3 then
+            if self.config.center.facelayer == x then
                 xoff = 0.05*math.sin(0.8*timeroff)
                 yoff = 0.05*math.sin((1.6*timeroff)+0.5)
             end
 
-			self.children.laythr:draw_shader('dissolve',0, nil, false, self.children.center,scale_mod, rotate_mod,xoff,yoff + 0.1 + 0.03*math.sin(1.8*timeroff),nil, 0.6)
-			self.children.laythr:draw_shader('dissolve', nil, nil, false, self.children.center, scale_mod, rotate_mod, xoff, yoff)
+			self.children["extremelay"..x]:draw_shader('dissolve',0, nil, false, self.children.center,scale_mod, rotate_mod,xoff,yoff + 0.1 + 0.03*math.sin(1.8*timeroff),nil, 0.6)
+			self.children["extremelay"..x]:draw_shader('dissolve', nil, nil, false, self.children.center, scale_mod, rotate_mod, xoff, yoff)
         end
-        if self.children.layfou then
-            local timeroff = timer + 0.75
-
-			local scale_mod = 0.07 + 0.02*math.sin(1.8*(timeroff)) + 0.00*math.sin(((timeroff) - math.floor((timeroff)))*math.pi*14)*(1 - ((timeroff) - math.floor((timeroff))))^8
-            local rotate_mod = 0.05*math.sin(1.219*(timeroff)) + 0.00*math.sin(((timeroff))*math.pi*5)*(1 - ((timeroff) - math.floor((timeroff))))^2
-
-            local xoff = 0
-            local yoff = 0
-
-            if self.config.center.rotlayer == 4 then
-                rotate_mod = rotate_mod + (timeroff)
-            end
-            if self.config.center.facelayer == 4 then
-                xoff = 0.05*math.sin(0.8*timeroff)
-                yoff = 0.05*math.sin((1.6*timeroff)+0.5)
-            end
-            
-			self.children.layfou:draw_shader('dissolve',0, nil, false, self.children.center,scale_mod, rotate_mod,xoff,yoff + 0.1 + 0.03*math.sin(1.8*(timeroff)),nil, 0.6)
-			self.children.layfou:draw_shader('dissolve', nil, nil, false, self.children.center, scale_mod, rotate_mod, xoff, yoff)
+        end
         end
     end,
     conditions = {vortex = false, facing = "front"}

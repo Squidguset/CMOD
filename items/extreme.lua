@@ -1,3 +1,11 @@
+SMODS.Atlas {
+    key = "extremes",
+    path = "extremes.png",
+    px = 71,
+    py = 95
+}
+
+
 -- gradient
 local extreme_gradient = SMODS.Gradient({
     key="extreme",
@@ -29,8 +37,9 @@ SMODS.Joker {
     rarity = "sgcry_extreme",
     pos = {x=0,y=1},
     cost = 100,
-    atlas = "jokers",
-    rotlayer = 2,
+    atlas = "extremes",
+    extrlayers = 4,
+    rotlayer = 1,
     facelayer = 3,
     no_doe = true,
     config = {extra = {change = 3}},
@@ -113,11 +122,12 @@ SMODS.Joker {
 
 SMODS.Joker {
     key = "truejim",
-    atlas = "jokers",
+    atlas = "extremes",
     cost = 100,
+    extrlayers = 3,
     no_doe = true,
     pos = {x=0,y=2},
-    facelayer = 3,
+    facelayer = 2,
     blueprint_compat = true,
     rarity = "sgcry_extreme",
     immutable = true,
@@ -242,7 +252,8 @@ sgcry_arbituim_msg = {
 
 SMODS.Joker {
     key = "Crash",
-    atlas = "jokers",
+    atlas = "extremes",
+    extrlayers = 4,
     cost = 100,
     no_doe = true,
     facelayer = 3,
@@ -277,8 +288,9 @@ SMODS.Joker {
 
 SMODS.Joker {
     key = "tarot",
-    atlas = "jokers",
+    atlas = "extremes",
     pos = {x=0,y=4},
+    extrlayers = 4,
     no_doe = true,
     cost = 100,
     facelayer = 2,
@@ -323,11 +335,12 @@ SMODS.Joker {
 
 SMODS.Joker {
     key = "spect",
-    atlas = "jokers",
+    atlas = "extremes",
     pos = {x=0,y=5},
     rarity = "sgcry_extreme",
-    rotlayer = 2,
-    facelayer = 3,
+    rotlayer = 1,
+    extrlayers = 3,
+    facelayer = 2,
     no_doe = true,
     loc_vars = function (self, info_queue, card)
         info_queue[#info_queue+1] = G.P_TAGS.tag_cry_empowered

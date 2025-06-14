@@ -194,3 +194,53 @@ SMODS.Joker {
     end
 end
 }
+
+SMODS.Joker {
+    key = "crowker",
+    atlas = "jokers",
+    pos = {x = 8, y = 0},
+    config = {extra = 2},
+    loc_vars = function (self, info_queue, card)
+        return {
+            vars = {
+                card.ability.extra
+            }
+        }
+    end,
+    calc_dollar_bonus = function (self, card)
+        return card.ability.extra
+    end
+}
+
+SMODS.Joker {
+    key = "zaffre",
+    atlas = "jokers",
+    pos = {x =4, y = 1},
+    blueprint_compatible = true,
+    config = {extra = {increase = 0.5}, xmult = 1},
+    loc_vars = function (self, info_queue, card)
+        return {
+            vars = {
+                card.ability.extra.increase, card.ability.xmult
+            }
+        }
+    end,
+    calculate = function (self, card, context)
+         if context.open_booster and context.card.config.center.kind == "Spectral" and not context.blueprint then
+            card.ability.xmult = card.ability.xmult + card.ability.extra.increase
+            card_eval_status_text(
+					context.blueprint_card or card,
+					"extra",
+					nil,
+					nil,
+					nil,
+					{ message = localize("k_upgrade_ex"), colour = G.C.RED}
+				)
+        end
+        if context.joker_main then
+            return{
+                xmult = card.ability.xmult
+            }
+        end
+    end
+}
