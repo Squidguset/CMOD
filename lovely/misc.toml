@@ -1,0 +1,16 @@
+[manifest]
+version = "1.0.0"
+dump_lua = false
+priority = -10
+
+[[patches]]
+[patches.pattern]
+target = '''=[SMODS jen "Jen.lua"]'''
+pattern = '''maxArrow = 2.5e4'''
+position = "before"
+payload = '''
+if (#SMODS.find_mod("sgcry") > 0 ) then
+    error("CMOD and Almanac are NOT compatable, please disable Almanac if you would like to use CMOD")
+end
+'''
+match_indent = true
