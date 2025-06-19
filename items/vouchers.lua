@@ -23,6 +23,9 @@ SMODS.Voucher {
     unredeem = function (self, voucher)
         G.GAME.sgcryfreereroll = G.GAME.sgcryfreereroll - voucher.ability.extra.gives
         G.GAME.sgcryrerollleft = G.GAME.sgcryrerollleft - voucher.ability.extra.gives
+    end,
+    in_pool =function (self, args)
+        return G.GAME.sgcrydorerolls
     end
 }
 
@@ -49,6 +52,9 @@ SMODS.Voucher {
         G.GAME.sgcryfreereroll = G.GAME.sgcryfreereroll - voucher.ability.extra.gives
         G.GAME.sgcryrerollleft = G.GAME.sgcryrerollleft - voucher.ability.extra.gives
         SMODS.change_booster_limit(-voucher.ability.extra.booster)
+    end,
+    in_pool =function (self, args)
+        return G.GAME.sgcrydorerolls
     end
 }
 
@@ -76,5 +82,8 @@ SMODS.Voucher {
         G.GAME.sgcryfreereroll = G.GAME.sgcryfreereroll - voucher.ability.extra.gives
         G.GAME.sgcryrerollleft = G.GAME.sgcryrerollleft - voucher.ability.extra.gives
         change_shop_size(-voucher.ability.extra.shop)
+    end,
+    in_pool =function (self, args)
+        return G.GAME.sgcrydorerolls
     end
 }
